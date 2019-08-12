@@ -20,7 +20,7 @@ const Header = ({ currentUser }) => (
         {
                 currentUser ? 
                 <div className="option" >
-                   {`Welcome, ${currentUser.displayName}` }
+                   {`Welcome, ${currentUser.additionalData.displayName}` }
                 </div>
                 :
                 null
