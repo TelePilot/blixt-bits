@@ -25,9 +25,9 @@ const config = {
 
       try{
         await userRef.set({
-          displayName,
           email,
           createdAt,
+          displayName,
           additionalData
         })
       } catch (error) {
