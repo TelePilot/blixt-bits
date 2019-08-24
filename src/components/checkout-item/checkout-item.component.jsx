@@ -1,28 +1,64 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import { connect } from "react-redux";
 import { clearItemFromCart, addItem, removeItem } from "../../redux/cart/cart.actions";
 
-import './checkout-item.styles.scss'
+
+const CheckoutItemContainer = styled.div`
+    width: 100%;
+    display: flex;
+    min-height: 100px;
+    border-bottom: 1px solid darkgrey;
+    padding: 15px 0;
+    font-size: 20px;
+    align-items: center;
+`
+const ImageContainer = styled.div`
+    width: 23%;
+    padding-right: 15px;`
+const CheckoutImage = styled.img`
+    width: 100%;
+    height: 100%;`
+
+const ItemPrice = styled.span`
+    width: 23%;`
+
+const ItemName = styled.span`
+    width: 23%;`
+
+const ItemQuantity = styled.span`
+    width: 23%;
+    display: flex`
+
+const Arrow = styled.div`
+    cursor: pointer
+`
+const Value = styled.span`
+    margin: 0 10px`
+
+const RemoveButton = styled.div`
+    padding-left: 12px;
+    cursor: pointer`
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     return (
-    <div className="checkout-item">
-        <div className="image-container">
-            <img src={imageUrl} alt="item"  />
-        </div>
-        <span className="name">{name}</span>
-        <span className="quantity">
-            <div onClick={() => removeItem(cartItem)} className="arrow">&#10094;</div>
-            <span className="value">{quantity}</span>
-            <div onClick={() => addItem(cartItem)} className="arrow">&#10095;</div>
-        </span>
-        <span className="price">£{price}</span>
-        <div className="remove-button" onClick={() => clearItem(cartItem)}>
+    <CheckoutItemContainer>
+        <ImageContainer>
+            <CheckoutImage src={imageUrl} alt="item"  />
+        </ImageContainer>
+        <ItemName>{name}</ItemName>
+        <ItemQuantity>
+            <Arrow onClick={() => removeItem(cartItem)}>&#10094;</Arrow>
+            <Value>{quantity}</Value>
+            <Arrow onClick={() => addItem(cartItem)} >&#10095;</Arrow>
+        </ItemQuantity>
+        <ItemPrice>£{price}</ItemPrice>
+        <RemoveButton onClick={() => clearItem(cartItem)}>
             &#10005;
-        </div>
-    </div>
+        </RemoveButton>
+    </CheckoutItemContainer>
 )}
 
 const mapDispatchToProps = dispatch => ({
