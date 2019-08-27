@@ -1,12 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 
-
 import { signUpStart } from '../../redux/user/user.actions'
-
 
 const SignUpContainer = styled.div`
     display: flex;
@@ -16,23 +14,18 @@ const SignUpContainer = styled.div`
 const Title = styled.h2`
     margin: 10px 0;`
 
-class SignUp extends React.Component {
-    constructor() {
-        super()
+const SignUp = ({signUpStart}) => {
+    const [userCredentials, setUserCredentials] = useState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+    const { displayName, email, password, confirmPassword} = userCredentials
 
-        this.state = {
-            displayName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        }
-    }
-
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         event.preventDefault()
 
-        const {email, password, displayName, confirmPassword} = this.state
-        const { signUpStart } = this.props
         if(password !== confirmPassword) {
             alert("passwords don't match")
             return
@@ -40,43 +33,26 @@ class SignUp extends React.Component {
         signUpStart({email, password, displayName})
 
 
-
-        // try {
-        //     const { user } = await auth.createUserWithEmailAndPassword(email, password)
-        //     await createUserProfileDocument(user, {displayName})
-
-        //     this.setState({
-        //     displayName: '',
-        //     email: '',
-        //     password: '',
-        //     confirmPassword: ''
-        //     })
-        // }
-        // catch(error) {
-        //     console.error(error)
-        // }
     }
 
-    handleChange = event => {
+    const handleChange = event => {
         const { name, value } = event.target
 
-        this.setState({ [name]: value })
+        setUserCredentials({...userCredentials, [name]: value })
     }
-    render() {
-        const {displayName, email, password, confirmPassword} = this.state
-
+        
         return(
             <SignUpContainer>
                 <Title>
                     I do not have an account
                 </Title>
                 <span> Sign up with your email and password</span>
-                <form className="sign-up-form" onSubmit={this.handleSubmit}>
+                <form className="sign-up-form" onSubmit={handleSubmit}>
                     <FormInput 
                     type='text'
                     name="displayName"
                     value={displayName}
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     label='Display Name'
                     required
                     />
@@ -84,7 +60,7 @@ class SignUp extends React.Component {
                     type='email'
                     name="email"
                     value={email}
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     label='Email'
                     required
                     />
@@ -92,7 +68,7 @@ class SignUp extends React.Component {
                     type='password'
                     name="password"
                     value={password}
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     label='Password'
                     required
                     />
@@ -100,7 +76,7 @@ class SignUp extends React.Component {
                     type='password'
                     name="confirmPassword"
                     value={confirmPassword}
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     label='Confirm Password'
                     required
                     />
@@ -110,7 +86,6 @@ class SignUp extends React.Component {
             </SignUpContainer>
         )
     }
-}
 
 
 const mapDispatchToProps = dispatch => ({
