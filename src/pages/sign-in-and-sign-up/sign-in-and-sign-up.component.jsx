@@ -1,15 +1,20 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
 
 import SignIn from '../../components/sign-in/sign-in.component'
 import SignUp from '../../components/sign-up/sign-up.component'
 
-import './sign-in-and-sign-up.styles.scss';
+const SignInAndSignUpContainer = styled.div`
+    width: 850px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;`
 
 const SignInAndSignUpPage = () => (
-    <div className="sign-in-and-sign-up">
+    <SignInAndSignUpContainer>
         <SignIn />
         <SignUp />
-    </div>
+    </SignInAndSignUpContainer>
 )
 
 export default SignInAndSignUpPage

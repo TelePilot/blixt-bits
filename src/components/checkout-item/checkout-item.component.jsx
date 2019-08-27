@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { connect } from "react-redux";
-import { clearItemFromCart, addItem, removeItem } from "../../redux/cart/cart.actions";
+import { connect } from "react-redux"
+import { clearItemFromCart, addItem, removeItem } from "../../redux/cart/cart.actions"
 
 
 const CheckoutItemContainer = styled.div`
@@ -42,7 +42,7 @@ const RemoveButton = styled.div`
     cursor: pointer`
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-    const { name, imageUrl, price, quantity } = cartItem;
+    const { name, imageUrl, price, quantity } = cartItem
     return (
     <CheckoutItemContainer>
         <ImageContainer>
@@ -67,4 +67,4 @@ const mapDispatchToProps = dispatch => ({
     removeItem: item => dispatch(removeItem(item))
 })
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default connect(null, mapDispatchToProps)(CheckoutItem)

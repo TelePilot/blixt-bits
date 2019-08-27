@@ -10,10 +10,10 @@ const config = {
     storageBucket: "",
     messagingSenderId: "973320747712",
     appId: "1:973320747712:web:fb16d2c14f0bd420"
-  };
+  }
 
   export const createUserProfileDocument = async (userAuth, additionalData) => {
-    if (!userAuth) return;
+    if (!userAuth) return
 
 
     const userRef = firestore.doc(`users/${userAuth.uid}`)
@@ -21,7 +21,7 @@ const config = {
 
     if(!snapShot.exists) {
       const { displayName, email } = userAuth
-      const createdAt = new Date();
+      const createdAt = new Date()
 
       try{
         await userRef.set({
@@ -35,11 +35,11 @@ const config = {
       }
     }
 
-    return userRef;
+    return userRef
   }
 
   export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-    const collectionRef = firestore.collection(collectionKey);
+    const collectionRef = firestore.collection(collectionKey)
 
     const batch = firestore.batch()
     objectsToAdd.forEach(obj => {
@@ -68,13 +68,22 @@ const config = {
       },{})
   }
 
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unSubscribe = auth.onAuthStateChanged(userAuth => {
+        unSubscribe()
+        resolve(userAuth)
+      }, reject)
+    })
+  }
+
   firebase.initializeApp(config)
 
   export const auth = firebase.auth()
   export const firestore = firebase.firestore()
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' })
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const googleProvider = new firebase.auth.GoogleAuthProvider()
+  googleProvider.setCustomParameters({ prompt: 'select_account' })
+  export const signInWithGoogle = () => auth.signInWithPopup(googleProvider)
 
-  export default firebase;
+  export default firebase
