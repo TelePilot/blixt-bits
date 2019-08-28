@@ -12,7 +12,6 @@ const HomePageContainer = styled.div`
 `
 const HomePage = () => (
    <HomePageContainer>
-     <h1>Blixt-mof-Bits</h1>
       <Directory/>
    </HomePageContainer>
 

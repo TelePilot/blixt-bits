@@ -1,6 +1,6 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 
 const MenuItemContainer = styled.div`
 	height: ${({ size }) => (size ? '380px' : '240px')}
@@ -12,7 +12,8 @@ const MenuItemContainer = styled.div`
 	justify-content: center;
 	border: 1px solid black;
 	margin: 0 7.5px 15px;
-	overflow: hidden;
+  overflow: hidden;
+  
 	&:hover {
 		cursor: pointer;
 		& .background-image {
@@ -22,14 +23,20 @@ const MenuItemContainer = styled.div`
 		& .content {
 			opacity: 0.9;
 		}
-	}
+  }
+  
 	&:first-child {
     margin-right: 7.5px;
   }
+
   &:last-child {
     margin-left: 7.5px;
   }
-`;
+
+  @media screen and (max-width: 800px) {
+    height: 200px;
+  }
+`
 
 const BackgroundImageContainer = styled.div`
   width: 100%;
@@ -37,7 +44,7 @@ const BackgroundImageContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-`;
+`
 
 const ContentContainer = styled.div`
   height: 90px;
@@ -50,19 +57,19 @@ const ContentContainer = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
-`;
+`
 
 const ContentTitle = styled.span`
   font-weight: bold;
   margin-bottom: 6px;
   font-size: 22px;
   color: #4a4a4a;
-`;
+`
 
 const ContentSubtitle = styled.span`
   font-weight: lighter;
   font-size: 16px;
-`;
+`
 export const MenuItem = ( {title, imageUrl, size, history, linkUrl, match }) => (
     <MenuItemContainer
     size={size}
@@ -80,4 +87,4 @@ export const MenuItem = ( {title, imageUrl, size, history, linkUrl, match }) => 
 
 )
 
-export default withRouter(MenuItem);
+export default withRouter(MenuItem)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -13,6 +13,7 @@ const CollectionItemContainer = styled.div`
     height: 350px;
     align-items: center;
     position: relative;
+
     &:hover {
         .collection-image {
           opacity: 0.8
@@ -21,6 +22,20 @@ const CollectionItemContainer = styled.div`
           opacity: 0.85;
           display: flex;
         }
+      }
+
+      @media screen and (max-width: 800px) {
+          width: 40vw;
+
+          &:hover {
+            .collection-image {
+              opacity: unset
+            }
+            button {
+              opacity: unset;
+             
+            }
+          }
       }`
 
 const ItemImage = styled.div`
@@ -50,7 +65,14 @@ const CollectionButton = styled(CustomButton)`
     opacity: 0.7;
     position: absolute;
     top: 255px;
-    display: none;`
+    display: none;
+    
+    @media screen and (max-width: 800px) {
+     display: block;
+     opacity: 0.9;
+     min-width: unset; 
+     padding: 0 10px;  
+    }`
 
 const CollectionItem = ({ item, addItem }) => {
     const { name, price, imageUrl } = item
@@ -74,4 +96,4 @@ const CollectionItem = ({ item, addItem }) => {
         addItem: item => dispatch(addItem(item))
     })
 
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem)
