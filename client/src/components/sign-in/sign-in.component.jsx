@@ -11,7 +11,11 @@ import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actio
 const SignInContainer = styled.div`
     width: 380px;
     display: flex;
-    flex-direction: column;`
+    flex-direction: column;
+    
+    @media screen and (max-width:800px) {
+        margin-bottom: 50px;
+    }`
 
 const Title = styled.h2`
     margin: 10px 0;`
