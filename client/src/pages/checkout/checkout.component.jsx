@@ -14,7 +14,10 @@ const CheckoutPageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 50px auto 0;
-
+    
+    @media screen and (max-width: 800px) {
+        width: 90%;
+    }
     button {
         margin-left: auto;
         margin-top: 50px;
