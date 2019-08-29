@@ -8,7 +8,11 @@ import { selectCollection } from "../../redux/shop/shop.selectors"
 
 const CollectionPageContainer = styled.div`
     display: flex;
-    flex-direction: column;`
+    flex-direction: column;
+    
+    @media screen and (max-width: 800px) {
+        align-items: center;
+    }`
 
 const Title = styled.h2`
     font-size: 38px;
@@ -22,6 +26,12 @@ const Items = styled.div`
     &.collection-item {
         margin-bottom: 30px;
       }
+
+    @media screen and (max-width: 800px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 15px;
+    }
 `
 
 const CollectionPage = ({ collection }) => {

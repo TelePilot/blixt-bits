@@ -8,7 +8,8 @@ import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors'
 
 const CollectionsOverviewContainer = styled.div`
     display: flex;
-    flex-flow: column;`
+    flex-flow: column;
+    `
 
 const CollectionsOverview = ({ collections }) => (
     <CollectionsOverviewContainer>
